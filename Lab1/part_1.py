@@ -33,10 +33,10 @@ def main():
     signals = signals.transpose()
 
     plt.figure(figsize=(16,9))
-    sns.set_theme(palette="pastel", style="whitegrid", context="paper")
+    sns.set_theme(style="whitegrid", context="paper", palette=sns.color_palette("husl", 12))
 
     for signal in signals:
-        sns.lineplot(x=samples, y=signal, errorbar=None).set(xlabel="Czas [s]", ylabel="Sygnał", title="Sygnał EKG")
+        sns.lineplot(x=samples, y=signal, errorbar=None, alpha=0.7).set(xlabel="Czas [s]", ylabel="Amplituda [mV]", title="Sygnał EKG")
 
     labels = generate_plot_labels(signals.shape[1])
     plt.legend(labels=labels, title="Kanały", loc=2, bbox_to_anchor= (1,1))

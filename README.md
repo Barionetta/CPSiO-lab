@@ -34,5 +34,5 @@ Po utworzeniu i aktywowaniu środowiska można uruchomić dowolny skrypt w repoz
 python part_1.py ekg1.txt
 ```
 
-## Autor
+## Autorzy
 Autorami skryptów i notatników są Mateusz Gawłowski i Katarzyna Matuszek.
