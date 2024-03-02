@@ -1,8 +1,21 @@
+# -*- coding: utf-8 -*-
+"""
+    Skrypt zawierający rozwiązanie zadania pierwszego z laboratorium 1
+"""
+__version__ = '1.0.0'
+__author__ = 'Mateusz Gawłowski, Katarzyna Matuszek'
+
 import argparse
 from pathlib import Path
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+def generate_plot_labels(columns):
+    labels = []
+    for column in range(columns):
+        labels.append("Kanał " + str(column + 1))
+    return labels
 
 def main():
 
@@ -12,10 +25,21 @@ def main():
 
     filename = args.file
     path = Path.cwd().parent.joinpath("data", filename)
-    signal = np.loadtxt(path)
+    signals = np.loadtxt(path)
 
-    sns.set_theme()
-    sns.relplot(data=signal, kind='line', palette="bright").set(xlabel="Numer próbki [n]", ylabel="Wartość", title="Sygnał EKG")
+    fs = 1000
+    lenght = signals.shape[0]
+    samples = np.linspace(0, lenght//fs, lenght)
+    signals = signals.transpose()
+
+    plt.figure(figsize=(16,9))
+    sns.set_theme(palette="pastel", style="whitegrid", context="paper")
+
+    for signal in signals:
+        sns.lineplot(x=samples, y=signal, errorbar=None).set(xlabel="Czas [s]", ylabel="Sygnał", title="Sygnał EKG")
+
+    labels = generate_plot_labels(signals.shape[1])
+    plt.legend(labels=labels, title="Kanały", loc=2, bbox_to_anchor= (1,1))
     plt.tight_layout()
     plt.show()
 
