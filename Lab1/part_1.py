@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 def generate_plot_labels(columns):
     labels = []
     for column in range(columns):
-        labels.append("Kanał " + str(column + 1))
+        labels.append("Odprowadzenie " + str(column + 1))
     return labels
 
 def main():
@@ -39,7 +39,7 @@ def main():
         sns.lineplot(x=samples, y=signal, errorbar=None, alpha=0.7).set(xlabel="Czas [s]", ylabel="Amplituda [mV]", title="Sygnał EKG")
 
     labels = generate_plot_labels(signals.shape[1])
-    plt.legend(labels=labels, title="Kanały", loc=2, bbox_to_anchor= (1,1))
+    plt.legend(labels=labels, title="Odprowadzenia", loc=2, bbox_to_anchor= (1,1))
     plt.tight_layout()
     plt.show()
 
